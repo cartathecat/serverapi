@@ -20,5 +20,5 @@ Retrieves a list of all ports details
 ```
 host:9000/help
 ```
-Retirbes a help response, showing end-points
+Retrieves a help response, showing end-points
 
