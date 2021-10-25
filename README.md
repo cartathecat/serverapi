@@ -1,6 +1,12 @@
 ## Server API
 
-API to expose end-points for ports
+### NOTE
+
+Didn't have time to include GO tests
+These APIs dont use gRPC
+
+
+API will expose end-points to retrieve port information from a static data JSON file.
 
 ```
 host:9000/port/{key}
