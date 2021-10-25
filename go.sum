@@ -1,0 +1,4 @@
+github.com/cartathecat/datahandler v0.0.2 h1:DoKJndU9CIjla6ltymy8nn/8RnKGW1vf1iY0uwWhBgg=
+github.com/cartathecat/datahandler v0.0.2/go.mod h1:mgOnUzpJAjyEkcAK/6EcQriHgI9+yIpzd+y9REX0ryU=
+github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
+github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
