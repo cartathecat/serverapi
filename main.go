@@ -10,8 +10,10 @@ package main
 */
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/cartathecat/datahandler"
 
@@ -26,6 +28,8 @@ type errorResponse struct {
 	Info string `json:"info"`
 	Msg  string `json:"message"`
 }
+
+var port string // Port number
 
 /*
 appHandler struct, that defines the function to invoke
@@ -139,9 +143,9 @@ func helpHandler(w http.ResponseWriter, r *http.Request) {
 	resp := map[string]interface{}{}
 	responseStatus := http.StatusOK
 
-	resp["listports"] = "http/localhost:9000/listports"
-	resp["listallports"] = "http/localhost:9000/listports/all"
-	resp["port/{ID}"] = "http/localhost:9000/port/{ID}"
+	resp["listports"] = fmt.Sprintf("http://{host}:%s/listports", port)
+	resp["listallports"] = fmt.Sprintf("http://{host}:%s/listports/all", port)
+	resp["port/{ID}"] = fmt.Sprintf("http://{host}:%s/port/{ID}", port)
 
 	// Set the heder details and write the error or response to the ResponseWriter
 	w.Header().Set("content-Type", "application/json;charset=UTF-8")
@@ -214,7 +218,14 @@ func main() {
 
 	log.Print("Server starting")
 
-	subrouter := newSubRouter("9000")
-	log.Fatal(http.ListenAndServe(":9000", subrouter))
+	// Get the port number
+	port = os.Getenv("API_PORT")
+	if port == "" {
+		port = "9000"
+	}
+
+	subrouter := newSubRouter(port)
+	log.Printf("Listening on port : %s\n", port)
+	log.Fatal(http.ListenAndServe(":"+port, subrouter))
 
 }
