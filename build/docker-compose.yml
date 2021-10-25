@@ -1,0 +1,22 @@
+version: "3"
+networks:
+    portsapi:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: "172.25.0.0/24"
+                  gateway: "172.25.0.1"
+    
+services:
+    serverapi:
+        image: serverapi:01
+        container_name: serverapi
+        ports:
+            - 9000:9000
+        environment: 
+            - API_PORT=9000
+        networks:
+            portsapi:
+                ipv4_address: 172.25.0.2
+
