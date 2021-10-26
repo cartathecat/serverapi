@@ -2,7 +2,6 @@
 
 ### NOTE
 
-Didn't have time to include GO tests
 These APIs dont use gRPC
 
 
