@@ -67,7 +67,7 @@ func errorHandler(w http.ResponseWriter, r *http.Request) {
 /*
 Returns JSON Port from GET request
 */
-func portKeyHandler(w http.ResponseWriter, r *http.Request) {
+func PortKeyHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Extract the key from the URL .... /port/{key}
 	vars := mux.Vars(r)
@@ -105,7 +105,7 @@ func portKeyHandler(w http.ResponseWriter, r *http.Request) {
 /*
 List Ports ID function to return a list of PortIDs
 */
-func listPortsHandler(w http.ResponseWriter, r *http.Request) {
+func ListPortsHandler(w http.ResponseWriter, r *http.Request) {
 
 	responseStatus := http.StatusOK
 	resp := datahandler.ListOfPorts()
@@ -121,7 +121,7 @@ func listPortsHandler(w http.ResponseWriter, r *http.Request) {
 /*
 List All Ports handler to return a list of ALL ports
 */
-func listAllPortsHandler(w http.ResponseWriter, r *http.Request) {
+func ListAllPortsHandler(w http.ResponseWriter, r *http.Request) {
 
 	responseStatus := http.StatusOK
 	resp := datahandler.ListAllPorts()
@@ -138,7 +138,7 @@ func listAllPortsHandler(w http.ResponseWriter, r *http.Request) {
 /*
 Help function to show end-points
 */
-func helpHandler(w http.ResponseWriter, r *http.Request) {
+func HelpHandler(w http.ResponseWriter, r *http.Request) {
 
 	resp := map[string]interface{}{}
 	responseStatus := http.StatusOK
@@ -183,12 +183,12 @@ func newSubRouter(port string) *mux.Router {
 	subrouter := router.PathPrefix("/").Subrouter()
 
 	// define port endpoints
-	subrouter.Handle("/port/{key}", appHandler{portKeyHandler})
-	subrouter.Handle("/listports", appHandler{listPortsHandler})
-	subrouter.Handle("/listports/all", appHandler{listAllPortsHandler})
+	subrouter.Handle("/port/{key}", appHandler{PortKeyHandler})
+	subrouter.Handle("/listports", appHandler{ListPortsHandler})
+	subrouter.Handle("/listports/all", appHandler{ListAllPortsHandler})
 
 	// Help end-point
-	subrouter.Handle("/help", appHandler{helpHandler})
+	subrouter.Handle("/help", appHandler{HelpHandler})
 
 	subrouter.NotFoundHandler = httpNotFoundHandler()
 
