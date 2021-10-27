@@ -7,23 +7,25 @@ These APIs dont use gRPC
 
 API will expose end-points to retrieve port information from a static data JSON file.
 
+portno defaults to 9000 if not set using in the environment variable API_PORT
+
 ```
-host:9000/port/{key}
+host:{apiport}/port/{key}
 ```
 Retrieves an individual port, using a specific id (key)
 
 ```
-host:9000/listports
+host:{apiport}/listports
 ```
 Retrieves a list of all port ids (key)
 
 ```
-host:9000/listports/all
+host:{apiport}/listports/all
 ```
 Retrieves a list of all ports details
 
 ```
-host:9000/help
+host:{apiport}/help
 ```
 Retrieves a help response, showing end-points
 
